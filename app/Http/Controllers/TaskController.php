@@ -42,7 +42,7 @@ class TaskController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        return response()->json(['message'=>'Created'], 201);
+        return response()->json(['message'=>'La tâche à bien été créée.'], 201);
     }
 
     public function show(Request $request, $id)
@@ -93,7 +93,7 @@ class TaskController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        return response()->json(['message'=>'Updated'], 201);
+        return response()->json(['message'=>'La tâche à été modifiée.'], 201);
 
     }
 
