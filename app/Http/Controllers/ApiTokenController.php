@@ -48,6 +48,37 @@ class ApiTokenController extends Controller
 
     }
 
+    public function login(Request $request)
+    {
+        //1 - form validation
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+        }
+
+        //3 - clear old tokens
+        $user->tokens()->where('tokenable_id', $user->id)->delete();
+
+        //4 - create other token
+        $token = $user->createToken()->plainTextToken;
+
+        return response()->json([
+            'token'=> $token,
+            'email'=>$user->email,
+            'name'=> $user->name,
+        ], 200);
+
+
+    }
+
 
 
 }
