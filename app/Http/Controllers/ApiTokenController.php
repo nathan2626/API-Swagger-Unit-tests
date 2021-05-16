@@ -79,6 +79,16 @@ class ApiTokenController extends Controller
 
     }
 
+    public function me (Request $request)
+    {
+        return response()->json([
+            'email'=>$request->user()->email,
+            'name'=> $request->user()->name,
+            "created_at"=> $request->user()->created_at,
+            "updated_at"=> $request->user()->updated_at,
+            "id"=> $request->user()->id
 
+        ], 200);
+    }
 
 }
