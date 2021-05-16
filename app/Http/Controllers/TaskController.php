@@ -61,6 +61,42 @@ class TaskController extends Controller
 
     }
 
+    public function update(Request $request, $id)
+    {
+        $task = Task::find($id);
+
+        if(!$task) {
+            return response()->json(["message" => "La tâche n'existe pas"], 404);
+        }
+
+        if($task->user->id != $request->user()->id) {
+            return response()->json(["message"=>"Accès à la tâche non autorisé"], 403);
+        }
+
+        $request->validate([
+            'body' => 'required',
+            'done' => 'required'
+        ]);
+
+        if(!$request->user()->tokenCan('tasks:write')) {
+            return response()->json(['message'=> 'You dont have the ability to do that.'], 401);
+        }
+
+        $params = [
+            'body' => $request->get('body'),
+            'done' => $request->get('done')
+        ];
+
+        DB::table('tasks')->insert([
+            'body' => $params['body'],
+            'done' => $params['done'],
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return response()->json(['message'=>'Updated'], 201);
+
+    }
+
     public function destroy(Request $request, $id)
     {
         $task = Task::find($id);
