@@ -14,4 +14,3 @@ Route::middleware('auth:sanctum')->post('auth/me', [\App\Http\Controllers\ApiTok
 Route::middleware('auth:sanctum')->post('auth/logout', [\App\Http\Controllers\ApiTokenController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->apiResource('tasks', \App\Http\Controllers\TaskController::class );
-

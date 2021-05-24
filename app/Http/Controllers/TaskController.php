@@ -22,6 +22,7 @@ class TaskController extends Controller
         ], 201);
 
     }
+
     public function store(Request $request)
     {
 
