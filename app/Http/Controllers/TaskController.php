@@ -16,7 +16,7 @@ class TaskController extends Controller
 //                'error'=> "Vous n'êtes pas co"
 //            ], 401);
 //        }
-        $tasksUser = auth()->user()->tasks()->orderBy('updated_at')->get();
+        $tasksUser = auth()->user()->tasks()->orderBy('updated_at', 'desc')->get();
         return response()->json([
             'tasks'=>$tasksUser
         ], 201);
