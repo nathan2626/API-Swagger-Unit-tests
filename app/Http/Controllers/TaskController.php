@@ -36,14 +36,16 @@ class TaskController extends Controller
 
         $params = [
             'body' => $request->get('body'),
+            'done' => $request->get('done'),
         ];
 
-        DB::table('tasks')->insert([
+        $task = Task::create([
             'body' => $params['body'],
             'user_id' => auth()->user()->id,
+            'done' => $params['done']
         ]);
-
-        return response()->json(['message'=>'La tâche à bien été créée.'], 201);
+        $task->save();
+        return response()->json(['message'=>'La tâche à bien été créée.', 'task' => $task], 201);
     }
 
     public function show(Request $request, $id)
@@ -58,7 +60,7 @@ class TaskController extends Controller
             return response()->json(["message"=>"Accès à la tâche non autorisé"], 403);
         }
 
-        return response()->json($task, 200);
+        return response()->json(['task' => $task], 200);
 
     }
 
@@ -88,13 +90,21 @@ class TaskController extends Controller
             'done' => $request->get('done')
         ];
 
-        DB::table('tasks')->insert([
-            'body' => $params['body'],
-            'done' => $params['done'],
-            'user_id' => auth()->user()->id,
-        ]);
 
-        return response()->json(['message'=>'La tâche à été modifiée.'], 201);
+        $task = Task::where('id', $id)->update([
+            'body' => $params['body'],
+            'user_id' => auth()->user()->id,
+            'done' => $params['done']
+        ]);
+//        $task->save();
+
+//        DB::table('tasks')->insert([
+//            'body' => $params['body'],
+//            'done' => $params['done'],
+//            'user_id' => auth()->user()->id,
+//        ]);
+
+        return response()->json(['message'=>'La tâche à été modifiée.', 'task' => $task], 201);
 
     }
 
@@ -110,9 +120,9 @@ class TaskController extends Controller
             return response()->json(["message"=>"Accès à la tâche non autorisé"], 403);
         }
 
-        DB::table('tasks')->where('id', '=',  $id)->delete();
+        $task = Task::where('id', $id)->delete();
 
-        return response()->json(["message"=>"Tache supprimée"], 200);
+        return response()->json(["message"=>"Tache supprimée", 'task'=> $task], 200);
 
     }
 }
