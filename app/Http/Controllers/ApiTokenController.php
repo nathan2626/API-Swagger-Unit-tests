@@ -79,6 +79,7 @@ class ApiTokenController extends Controller
             'token'=> $token,
             'email'=>$user->email,
             'name'=> $user->name,
+            'created_at'=> $user->created_at,
         ], 200);
 
 
