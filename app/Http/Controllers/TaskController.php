@@ -104,7 +104,7 @@ class TaskController extends Controller
 //            'user_id' => auth()->user()->id,
 //        ]);
 
-        return response()->json(['message'=>'La tâche à été modifiée.', 'task' => $task], 201);
+        return response()->json(['message'=>'La tâche à été modifiée.', 'task' => $task], 200);
 
     }
 
@@ -120,9 +120,11 @@ class TaskController extends Controller
             return response()->json(["message"=>"Accès à la tâche non autorisé"], 403);
         }
 
-        $task = Task::where('id', $id)->delete();
+        Task::where('id', $id)->delete();
 
-        return response()->json(["message"=>"Tache supprimée", 'task'=> $task], 200);
+        // return response()->json(["message"=>"Tache supprimée", 'task'=> $task->id], 200);
+        return response()->json(["message"=>"Tache supprimée"], 204);
+
 
     }
 }
