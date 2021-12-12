@@ -152,6 +152,37 @@ class TaskController extends Controller
      * )
      */
 
+       /**
+     * @OA\Get(path="/api/tasks{id}",
+     *   tags={"tasks"},
+     *   summary="Task user",
+     *   description="Show task user",
+     *   operationId="showTaskwUser",
+     *   security={ {"bearerAuth": {}} },
+     *  @OA\Response(
+    *    response=200,
+    *    description="Success",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="name", type="string", example="Tolo tolo to lo tolotolotolo tolooooo toloooo otltolotlto"),  
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=401,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Unauthorized"),
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=404,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="La tâche n'existe pas"),
+    *        )
+    *     ),
+     * )
+     */
+
      /**
      * @OA\Post(path="/api/tasks",
      *   summary="Create task",
