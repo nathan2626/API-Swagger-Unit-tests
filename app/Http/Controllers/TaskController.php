@@ -127,4 +127,184 @@ class TaskController extends Controller
 
 
     }
+
+     /**
+     * @OA\Get(path="/api/tasks",
+     *   tags={"tasks"},
+     *   summary="Tasks user",
+     *   description="Tasks user",
+     *   operationId="allTasksUser",
+     *   security={ {"bearerAuth": {}} },
+     *  @OA\Response(
+    *    response=200,
+    *    description="Success",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="name", type="string", example="Tolo tolo to lo tolotolotolo tolooooo toloooo otltolotlto"),  
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=401,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Unauthorized"),
+    *        )
+    *     ),
+     * )
+     */
+
+     /**
+     * @OA\Post(path="/api/tasks",
+     *   summary="Create task",
+     *   tags={"tasks"},
+     *   description="Create task",
+     *   operationId="createTask",
+     *   security={ {"bearerAuth": {}} },
+     * @OA\RequestBody(
+    *    required=true,
+    *    description="Body",
+    *    @OA\JsonContent(
+    *       required={"body"},
+    *       @OA\Property(property="body", type="string", example="Tolo tolo to lo tolotolotolo tolooooo toloooo otltolotlto"),
+    *    ),
+    * ),
+     *  @OA\Response(
+    *    response=201,
+    *    description="Success",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="name", type="string", example="Tolo tolo to lo tolotolotolo tolooooo toloooo otltolotlto"), 
+    *        )
+    *     ),
+    *   @OA\Response(
+    *    response=400,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Please fill in all fields"),
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=401,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Unauthorized"),
+    *        )
+    *     ),
+     * )
+     */
+
+     /**
+     * @OA\Delete(path="/api/tasks/{id}",
+     *   tags={"tasks"},
+     *   summary="Delete task user",
+     *   description="Delete task user",
+     *   operationId="deleteTasksUser",
+     *   security={ {"bearerAuth": {}} },
+     * @OA\Parameter(
+    *    description="ID of task",
+    *    in="path",
+    *    name="id",
+    *    required=true,
+    *    example="1",
+    *    @OA\Schema(
+    *       type="integer",
+    *       format="int64",
+    *    )
+    * ),
+     *  @OA\Response(
+    *    response=200,
+    *    description="Success",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="success", type="string", example="Tache supprimée"),
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=403,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Accès à la tâche non autorisé"),
+    *        )
+    *     ),
+    *   @OA\Response(
+    *    response=404,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="La tâche n'existe pas"),
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=401,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Unauthorized"),
+    *        )
+    *     ),
+     * )
+     */
+
+      /**
+     * @OA\Put(path="/api/tasks/{id}",
+     *   tags={"tasks"},
+     *   summary="Update task user",
+     *   description="Update task user",
+     *   operationId="updateTasksUser",
+     *   security={ {"bearerAuth": {}} },
+     *   @OA\RequestBody(
+    *    required=true,
+    *    description="Body",
+    *    @OA\JsonContent(
+    *       required={"body"},
+    *       @OA\Property(property="body", type="string", example="Tolo tolo to lo tolotolotolo tolooooo toloooo otltolotlto"),
+    *    ),
+    * ),
+     * @OA\Parameter(
+    *    description="ID of task",
+    *    in="path",
+    *    name="id",
+    *    required=true,
+    *    example="1",
+    *    @OA\Schema(
+    *       type="integer",
+    *       format="int64",
+    *    )
+    * ),
+    *  @OA\Response(
+    *    response=200,
+    *    description="Success",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="name", type="string", example="Tolo tolo to lo tolotolotolo tolooooo toloooo otltolotlto"), 
+    *        )
+    *     ),
+    *   @OA\Response(
+    *    response=400,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Please fill in all fields"),
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=404,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="La tâche n'existe pas"),
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=403,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Accès à la tâche non autorisé"),
+    *        )
+    *     ),
+    *    @OA\Response(
+    *    response=401,
+    *    description="error",
+    *    @OA\JsonContent(
+    *       @OA\Property(property="message", type="string", example="Unauthorized"),
+    *        )
+    *     ),
+     * )
+     */
+    
+
 }
+
+

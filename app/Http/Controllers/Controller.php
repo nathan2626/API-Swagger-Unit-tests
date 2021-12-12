@@ -9,5 +9,20 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    /**
+     * @OA\Info(
+     * title="To Dont List API",
+     *  version="0.1",)
+     * @OA\SecurityScheme(
+    *      securityScheme="bearerAuth",
+    *      in="header",
+    *      name="bearerAuth",
+    *      type="http",
+    *      scheme="bearer",
+    *      bearerFormat="JWT",
+    * )
+     * 
+     */
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
