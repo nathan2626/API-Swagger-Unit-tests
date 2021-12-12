@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "To Dont List API",
-        "version": "0.1"
+        "version": "1.0.1"
     },
     "paths": {
         "/api/auth/register": {
@@ -11,7 +11,7 @@
                     "auth"
                 ],
                 "summary": "Register user",
-                "description": "Register a user",
+                "description": "",
                 "operationId": "registerUser",
                 "requestBody": {
                     "description": "User email, name, password, device_name for register",
@@ -26,14 +26,14 @@
                                 ],
                                 "properties": {
                                     "email": {
-                                        "type": "string",
+                                        "type": "email",
                                         "format": "email"
                                     },
                                     "name": {
                                         "type": "string"
                                     },
                                     "password": {
-                                        "type": "string",
+                                        "type": "password",
                                         "format": "password"
                                     },
                                     "device_name": {
@@ -60,7 +60,7 @@
                                             "type": "string"
                                         },
                                         "email": {
-                                            "type": "string"
+                                            "type": "email"
                                         },
                                         "created_at": {
                                             "type": "date-time"
@@ -77,7 +77,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "msg": {
+                                        "message": {
                                             "type": "string",
                                             "example": "Please fill in all fields."
                                         }
@@ -93,7 +93,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "msg": {
+                                        "message": {
                                             "type": "string",
                                             "example": "You are already registered."
                                         }
@@ -126,11 +126,11 @@
                                 ],
                                 "properties": {
                                     "email": {
-                                        "type": "string",
+                                        "type": "email",
                                         "format": "email"
                                     },
                                     "password": {
-                                        "type": "string",
+                                        "type": "password",
                                         "format": "password"
                                     },
                                     "device_name": {
@@ -157,7 +157,7 @@
                                             "type": "string"
                                         },
                                         "email": {
-                                            "type": "string"
+                                            "type": "email"
                                         }
                                     },
                                     "type": "object"
@@ -171,7 +171,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "msg": {
+                                        "message": {
                                             "type": "string",
                                             "example": "Please fill in all fields."
                                         }
@@ -187,9 +187,123 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "msg": {
+                                        "message": {
                                             "type": "string",
                                             "example": "The provided credentials are incorrect."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/me": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Me user",
+                "description": "Me user",
+                "operationId": "meUser",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "email"
+                                        },
+                                        "created_at": {
+                                            "type": "date-time"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Logout user",
+                "description": "Logout user",
+                "operationId": "logoutUser",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You are disconnected."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized."
                                         }
                                     },
                                     "type": "object"

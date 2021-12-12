@@ -12,7 +12,7 @@ class Controller extends BaseController
     /**
      * @OA\Info(
      * title="To Dont List API",
-     *  version="0.1",)
+     *  version="1.0.1",)
      * @OA\SecurityScheme(
     *      securityScheme="bearerAuth",
     *      in="header",
